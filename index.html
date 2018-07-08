@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Registration <br< </title>
+<meta charset="utf-8">
+
+<script>
+function setFocus() {
+var uName=document.myForm.name.focus();
+return true;
+}
+function checkIfEmptyName(){
+var nameLength=document.myForm.name.value.length;
+var allowedValue=/^[A-Za-z]+$/;
+	if (nameLength == 0)
+	{
+		alert("Name field cannot be empty !!!");
+		document.myForm.name.focus();
+		return false;
+}
+	else if(document.myForm.name.value.match(allowedValue)){
+	document.myForm.surname.focus();
+	return true;
+}
+else
+{
+alert("Name field needs to be text !!!"); 
+		document.myForm.name.focus();
+		return false;
+}
+}
+function checkIfEmptySurname(){
+	var surnameLength=document.myForm.surname.value.length;
+	var trueValue=/^[A-Za-z]+$/;
+		if (surnameLength == 0)
+		{
+			alert("Surname field cannot be empty !!!");
+			document.myForm.surname.focus();
+			return false;
+}
+		else if(document.myForm.surname.value.match(trueValue))
+	{
+		document.myForm.birthday.focus();
+		return true;
+}
+else{
+			alert("Surname field needs to be text !!!"); 
+			document.myForm.surname.focus();
+			return false;
+}
+}
+
+function checkIfEmptyDate(){
+var dateLength=document.myForm.birthday.value.length;
+var dateValue = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/;
+	if (dateLength == 0)
+		{
+		alert("Date of Birth field cannot be empty !!!");
+		document.myForm.birthday.focus();
+		return false;
+}
+
+else if (!(document.myForm.birthday.value.match(dateValue))) {
+alert("An invalid date format !!!");
+document.myForm.birthday.focus();
+		return false;
+}
+}
+
+function checkIfEmptyEmail(){
+var emailLength=document.myForm.email.value.length;
+var emailValue=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if (emailLength == 0)
+		{
+		alert("Email field cannot be empty !!!");
+		document.myForm.email.focus();
+		return false;
+}
+	else if (document.myForm.email.value.match(emailValue))
+{
+document.myForm.userpassword.focus();
+return true;
+}
+else{
+alert("An invalid e-mail address !!!");
+document.myForm.email.focus();
+return false;
+}
+}
+
+
+function checkIfEmptyPassword(){
+var passwordLength=document.myForm.userpassword.value.length;
+var numberRequired = /[0-9]/g;
+var letterRequired = /[A-Z]/g;
+var symbolRequired = /[@$,<>#:?_*&;!"%&(=)]/g;
+
+	if (passwordLength == 0)
+		{
+alert("Password field cannot be empty !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+else if ((!(document.myForm.userpassword.value.match(numberRequired))) && (!(document.myForm.userpassword.value.match(letterRequired))) && (!(passwordLength > 5 && passwordLength < 16)) && (!(document.myForm.userpassword.value.match(symbolRequired))))
+{
+alert("Password needs to be between 6 and 15 characters long and there needs to be at least one numeric digit, at least one special symbol and at least one uppercase letter in password  !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if ((!(document.myForm.userpassword.value.match(numberRequired))) && (!(document.myForm.userpassword.value.match(letterRequired))) && (!(document.myForm.userpassword.value.match(symbolRequired)))){
+alert(" There needs to be at least one numeric digit, at least one uppercase letter and at least special symbol in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if ((!(document.myForm.userpassword.value.match(letterRequired))) && (!(passwordLength > 5 && passwordLength < 16))){
+alert("Password needs to be between 6 and 15 characters long and there needs to be at least one uppercase letter in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if ((!(document.myForm.userpassword.value.match(numberRequired))) && (!(passwordLength > 5 && passwordLength < 16))){
+alert("Password needs to be between 6 and 15 characters long and there needs to be at least one numeric digit in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if ((!(document.myForm.userpassword.value.match(numberRequired))) && (!(document.myForm.userpassword.value.match(symbolRequired)))){
+alert(" There needs to be at least one numeric digit and at least one special symbol in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if ((!(document.myForm.userpassword.value.match(symbolRequired))) && (!(document.myForm.userpassword.value.match(letterRequired)))){
+alert(" There needs to be at least one special symbol and at least one uppercase letter in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+
+else if (!(document.myForm.userpassword.value.match(numberRequired))){
+alert("There needs to be at least one numeric digit in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if (!(document.myForm.userpassword.value.match(letterRequired))){
+alert("There needs to be at least one uppercase letter in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+
+else if (!(document.myForm.userpassword.value.match(symbolRequired))){
+alert("There needs to be at least one special symbol in password !!!");
+document.myForm.userpassword.focus();
+return false;
+}
+document.myForm.submit.focus();
+return true;
+}
+function finalCheck() {
+if(!(checkIfEmptyName()))
+{
+document.myForm.submit.focus();
+return false;
+}
+}
+
+</script>
+</head>
+
+<body onload ="setFocus();">
+
+  
+
+<table>
+<tr>
+<h1><center> Registration</h1><b> <b>
+<br>
+</tr>
+<center>
+<b> <b><table align="center" width="65%">
+<center>
+<tr>
+<td><form method="post" action="calculator.html" name="myForm">
+<ul>
+<li>
+<label for="name">Name:</label> </li>
+	<li> <input type="text" name="name" onblur="checkIfEmptyName()"> <br> <br> </li>
+	
+	<li> <label for="surname">Surname:</label> </li>
+	<li> <input type="text" name="surname" onblur="checkIfEmptySurname()"></li><br> <br>
+
+	<li> <label for="birthday">Date of birthday:</label></li>
+	<li> <input type="text" name="birthday" placeholder="dd/mm/yyyy" onblur="checkIfEmptyDate()"></li><br><br>
+
+	<li><label for="email">E-mail:</label></li>
+         <li> <input type="email" id="email" name="email"placeholder="hanahadzo@hotmail.com" onblur="checkIfEmptyEmail()"></li><br><br>
+	
+	<li> <label for="password">Password //at least 6 and most 15 characters, uppercase letter and numeric digit //: </label> </li>
+    	 <li> <input type="password" name="userpassword" onblur="checkIfEmptyPassword()"> </li><br><br>
+
+	<li> Gender: </li>
+	<select name="gender">
+               <option value="m">Male</option>
+               <option value="f">Female</option> </h2></select><br> <br> <br> <br>
+
+
+ 	  Interests: <br> 
+		    <input type="checkbox" name="swim" value="swim">Swim <br> <!-- or items[0] or items[]-->
+		    <input type="checkbox" name="Draw" value="Draw">Draw<br> 
+		    <input type="checkbox" name="Read" value="Read">Read <br>
+		    <input type="checkbox" name="Football" value="football">Football <br>
+		    <input type="checkbox" name="Basketball" value="basketball">Basketball <br>
+		    <input type="checkbox" name="Sing" value="sing">Sing <br>
+		    <input type="checkbox" name="others" value="sing">Other <br><br>
+</p>
+
+    		
+		<input type = 'submit' name ="submit" value ="Submit" onblur="finalCheck()">
+	
+		<input type="reset" value="Reset">
+
+
+	
+</form>
+
+
+</table>
+</div> </div> </div>
+</body>
+</html>
